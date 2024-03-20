@@ -4,5 +4,5 @@ import net.serenitybdd.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 
 @DefaultUrl("https://www.demoblaze.com/index.html")
-public class DemoBlazePage extends PageObject {
+public class DemoBlazeHomePage extends PageObject {
 }
