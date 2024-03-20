@@ -34,8 +34,8 @@ public class DataFactory {
         String country = faker.address().country();
         String city = faker.address().city();
         String creditCard = faker.finance().creditCard();
-        String month = faker.business().creditCardExpiry().split("/")[0];
-        String year = faker.business().creditCardExpiry().split("/")[1];
+        String month = faker.business().creditCardExpiry();
+        String year = faker.business().creditCardExpiry();
 
         // Create a HashMap to store the information
         Map<String, String> fakeData = new HashMap<>();
@@ -43,7 +43,7 @@ public class DataFactory {
         fakeData.put(COUNTRY.name(), country);
         fakeData.put(CITY.name(), city);
         fakeData.put(CREDIT_CARD.name(), creditCard);
-        fakeData.put(MOTH.name(), month);
+        fakeData.put(MONTH.name(), month);
         fakeData.put(YEAR.name(), year);
         return fakeData;
     }

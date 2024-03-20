@@ -1,17 +1,21 @@
 package auto.carrito.compra.stepDefinitions;
 
+import java.util.Map;
+
 import org.openqa.selenium.support.ui.Sleeper;
 
 import auto.carrito.compra.catalogProduct.questions.TheCartPage;
 import auto.carrito.compra.catalogProduct.tasks.AddToCart;
+import auto.carrito.compra.catalogProduct.tasks.ConfirmPurchase;
 import auto.carrito.compra.catalogProduct.tasks.RemoveToCart;
+import auto.carrito.compra.data.DataFactory;
 import auto.carrito.compra.navigation.NavigateTo;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.questions.page.TheWebPage;
 
 public class ShopingCartOperations {
 
@@ -69,16 +73,21 @@ public class ShopingCartOperations {
                 Ensure.that(TheCartPage.theProduct()).isFalse());
     }
 
+    @SuppressWarnings("unchecked")
     @When("{actor} confirm products in the shopping cart")
     public void he_confirm_products_in_the_shopping_cart(Actor actor) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Map<String, String> shopingData = DataFactory.shopingData();
+        actor.attemptsTo(
+                ConfirmPurchase.theProducts(shopingData)
+            );
     }
 
     @Then("{actor} is notified that he has made the purchase")
-    public void he_is_notified_that_he_has_made_the_purchase(Actor actor) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void he_is_notified_that_he_has_made_the_purchase(Actor actor) throws InterruptedException {
+        Thread.sleep(2000);
+        actor.attemptsTo(
+            Ensure.that(TheCartPage.messageConfirmPurchase()).containsIgnoringCase("Thank you for your purchase!")
+        );
     }
 
 }

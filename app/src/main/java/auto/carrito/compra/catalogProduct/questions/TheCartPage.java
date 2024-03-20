@@ -14,5 +14,9 @@ public class TheCartPage {
     public static Question<Boolean> theProduct(){
         return Visibility.of(ShoppingCart.FIRST_PRODUCT);
     }
+
+    public static Question<String> messageConfirmPurchase(){
+        return Text.of(ShoppingCart.MESSAGE_CONFIRM_PURCHASE);
+    }
     
 }
